@@ -19,7 +19,7 @@
 		<span> ①也可以把jasper模板文件存储在ClientPrinter本地， 服务器只需要返回打印数据</span>
 		<p></p>
 
-		<button type="button" id="printBtn" onclick="requestData()"
+		<button type="button" id="printBtn" 
 			class="btn btn-primary">点击打印</button>
 
 	</div>
@@ -29,44 +29,15 @@
 		src="static/bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
 
 	<script type="text/javascript">
-		function requestData() {
-			var xhr = new XMLHttpRequest();
-			xhr.onreadystatechange = function() {
-				if (xhr.readyState === 4 && xhr.status === 200) {
-					var imgdata = xhr.response;
-					console.log(imgdata.length);
-					print(new Uint8Array(imgdata));
-				}
-			}
-			xhr.open("GET", "print?method=zjd", true);
-			xhr.overrideMimeType("text/plain; charset=x-user-defined");
-			xhr.send();
-		}
-
-		function print(bindata) {
-			XMLHttpRequest.prototype.sendAsBinary = function(datastr) {
-				function byteValue(x) {
-				return x.charCodeAt(0) & 0xff;
-				}
-				var ords = Array.prototype.map.call(datastr, byteValue);
-				var ui8a = new Uint8Array(ords);
-				this.send(ui8a.buffer);
-				}
-			
-			var xhr = new XMLHttpRequest();
-			xhr.open("POST", "print?method=toObject");
-			xhr.sendAsBinary(bindata);
-		}
-
+		
 		$(function() {
-			$('#printBtn2').on('click', function() {
+			$('#printBtn').on('click', function() {
 
 				htmlobj = $.ajax({
 					url : "print?method=zjd",
-					dataType : "binary",
+					dataType : "json",
 					success : function(data) {
-						console.log(data.length);
-
+						alert(data.xml);
 					}
 				});
 

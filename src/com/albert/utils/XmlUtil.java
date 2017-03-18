@@ -3,9 +3,11 @@
  */
 package com.albert.utils;
 
+import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectOutputStream;
@@ -36,7 +38,20 @@ public class XmlUtil {
         String documentStr = document.asXML();  
         return documentStr;
     }  
-	
+	public static String file2str(String filePath){
+		 StringBuilder result = new StringBuilder();
+	        try{
+	            BufferedReader br = new BufferedReader(new FileReader(new File(filePath)));
+	            String s = null;
+	            while((s = br.readLine())!=null){//使用readLine方法，一次读一行
+	                result.append(System.lineSeparator()+s);
+	            }
+	            br.close();    
+	        }catch(Exception e){
+	            e.printStackTrace();
+	        }
+	        return result.toString();
+	}
 	public static byte[] toByteArray (Object obj) {      
         byte[] bytes = null;      
         ByteArrayOutputStream bos = new ByteArrayOutputStream();      

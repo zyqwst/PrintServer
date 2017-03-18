@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.albert.utils;
+package com.albert.domain;
 
 import java.io.Serializable;
 
@@ -20,16 +20,18 @@ public class ResponseEntity implements Serializable{
 	/**1 成功 -1 失败*/
 	private Integer status;
 	private String msg;
-	private String result;
-	private Object params;
+	/**打印模板*/
+	private String xml;
+	/**打印数据json*/
+	private String json;
 	public ResponseEntity() {
 	}
-	public ResponseEntity(String result,Object params){
-		this.result = result;
-		this.params = params;
+	public ResponseEntity(String xml,String json){
+		this.xml = xml;
+		this.json = json;
 	}
-	public static ResponseEntity success(String result,Object params){
-		ResponseEntity r = new ResponseEntity(result, params);
+	public static ResponseEntity success(String xml,String json){
+		ResponseEntity r = new ResponseEntity(xml, json);
 		r.setStatus(1);
 		r.setMsg("OK");
 		return r;
@@ -52,17 +54,17 @@ public class ResponseEntity implements Serializable{
 	public void setMsg(String msg) {
 		this.msg = msg;
 	}
-	public String getResult() {
-		return result;
+	public String getXml() {
+		return xml;
 	}
-	public void setResult(String result) {
-		this.result = result;
+	public void setXml(String xml) {
+		this.xml = xml;
 	}
-	public Object getParams() {
-		return params;
+	public String getJson() {
+		return json;
 	}
-	public void setParams(Object params) {
-		this.params = params;
+	public void setJson(String json) {
+		this.json = json;
 	}
 	
 }

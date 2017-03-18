@@ -7,16 +7,13 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.albert.utils.ResponseEntity;
+import com.albert.domain.ResponseEntity;
 import com.albert.utils.XmlUtil;
 import com.google.gson.Gson;
 
@@ -64,13 +61,6 @@ public class BaseServlet extends HttpServlet {
 		String json = gson.toJson(r);
 		PrintWriter out = resp.getWriter();
 		out.write(json);
-		out.flush();
-		out.close();
-	}
-	public void writeObject(HttpServletResponse resp,Object obj) throws IOException{
-		byte[] data = XmlUtil.toByteArray(obj);
-		OutputStream out = resp.getOutputStream();
-		out.write(data);
 		out.flush();
 		out.close();
 	}
