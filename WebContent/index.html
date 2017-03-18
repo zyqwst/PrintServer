@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title></title>
+<link rel="stylesheet"
+	href="static/bootstrap-3.3.5-dist/css/bootstrap.min.css">
+
+</head>
+<body class="container">
+	<div class="jumbotron">
+		<h2>Web打印控件样例</h2>
+		<p>&nbsp;&nbsp;&nbsp;&nbsp;本系统的复杂点在于网页JS发送打印数据给本地打 印程序。思路如下：
+			本地打印程序（以下称ClientPrinter）需要安 装在用户电脑。ClientPrinter基于轻量级web框架B
+			lade，安装完成后自动加入windows服务，开机自 动启动，监听9912端口。可以在浏览器输入：loca
+			lhost:9912验证是否启动成功。 用户在网页点击打印时，服务器返回jasper模
+			板文件和打印数据①，然后JS跨域访问ClientPrinte r，ClientPrinter调用打印机打印，最后返回打印结
+			果给网页端，以便于用户知晓是否答应成功。</p>
+		<span> ①也可以把jasper模板文件存储在ClientPrinter本地， 服务器只需要返回打印数据</span>
+		<p></p>
+
+		<button type="button" id="printBtn" onclick="requestData()"
+			class="btn btn-primary">点击打印</button>
+
+	</div>
+
+	<script type="text/javascript" src="static/jquery.min.js"></script>
+	<script type="text/javascript"
+		src="static/bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
+
+	<script type="text/javascript">
+		function requestData() {
+			var xhr = new XMLHttpRequest();
+			xhr.onreadystatechange = function() {
+				if (xhr.readyState === 4 && xhr.status === 200) {
+					var imgdata = xhr.response;
+					console.log(imgdata.length);
+					print(new Uint8Array(imgdata));
+				}
+			}
+			xhr.open("GET", "print?method=zjd", true);
+			xhr.overrideMimeType("text/plain; charset=x-user-defined");
+			xhr.send();
+		}
+
+		function print(bindata) {
+			XMLHttpRequest.prototype.sendAsBinary = function(datastr) {
+				function byteValue(x) {
+				return x.charCodeAt(0) & 0xff;
+				}
+				var ords = Array.prototype.map.call(datastr, byteValue);
+				var ui8a = new Uint8Array(ords);
+				this.send(ui8a.buffer);
+				}
+			
+			var xhr = new XMLHttpRequest();
+			xhr.open("POST", "print?method=toObject");
+			xhr.sendAsBinary(bindata);
+		}
+
+		$(function() {
+			$('#printBtn2').on('click', function() {
+
+				htmlobj = $.ajax({
+					url : "print?method=zjd",
+					dataType : "binary",
+					success : function(data) {
+						console.log(data.length);
+
+					}
+				});
+
+			});
+
+		})
+	</script>
+
+</body>
+</html>
