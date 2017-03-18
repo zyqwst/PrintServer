@@ -32,12 +32,27 @@
 		
 		$(function() {
 			$('#printBtn').on('click', function() {
-
-				htmlobj = $.ajax({
+				$.ajax({
 					url : "print?method=zjd",
 					dataType : "json",
 					success : function(data) {
-						alert(data.xml);
+			               $.ajax({
+	            	           url:"http://127.0.0.1:9000/",
+	            	           type:'POST',
+	            	           crossDomain: true,
+	            	   			dataType: "json",
+	            	   			data:{"data":JSON.stringify(data)},
+	            	           error:function(e){
+	            	               alert(e.repsonseText);
+	            	           },
+	            	           success:function(data){
+	            	               console.log(data);
+	            	           }
+	            	       });
+						
+					},
+					failed : function(msg){
+						alert(msg);
 					}
 				});
 
