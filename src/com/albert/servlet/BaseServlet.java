@@ -19,7 +19,8 @@ import com.google.gson.Gson;
 
 /**
  * @ClassName: BaseServlet
- * @Description:
+ * @Description: 多个请求多个servlet太过繁琐，只需定义一个子类继承BaseServlet,子类中是各种请求的方法，然后根据request.getParameter("method")调用子类的方法；
+ * 				 比如http://ip地址?method=zjd 。那么只需在子类定义zjd方法即可
  * @author albert
  * @date 2017年3月17日 下午9:34:23
  * 
