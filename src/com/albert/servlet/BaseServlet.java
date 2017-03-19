@@ -32,7 +32,7 @@ public class BaseServlet extends HttpServlet {
 	private static final long serialVersionUID = -496209608851406742L;
 
 	@Override
-	public void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	public void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException,RuntimeException {
 		String methodName = req.getParameter("method");
 		if (methodName == null || methodName.isEmpty()) {
 			write(resp, ResponseEntity.failed("请求参数不可为空"));
