@@ -1,11 +1,15 @@
 package com.albert.servlet;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.albert.domain.Person;
 import com.albert.domain.ResponseEntity;
 import com.albert.utils.XmlUtil;
 
@@ -38,7 +42,14 @@ public class PrintServlet extends BaseServlet{
         String path = this.getClass().getClassLoader().getResource("/").getPath();
         try {
         	String xml = XmlUtil.xmlFile2str(path+"demo.jrxml");
-        	String json = XmlUtil.file2str(path+"param.json");
+        	List<Person> list = new ArrayList<>();
+    		list.add(new Person("0001", "albert", "浙江省湖州市", new Date()));
+    		list.add(new Person("0001", "albert", "浙江省湖州市", new Date()));
+    		list.add(new Person("0001", "albert", "浙江省湖州市", new Date()));
+    		list.add(new Person("0002", "albert2", "浙江省湖州市", new Date()));
+    		list.add(new Person("0002", "albert2", "浙江省湖州市", new Date()));
+    		
+    		String json = XmlUtil.domain2JsonFile(list);
         	write(resp, ResponseEntity.success(xml, json));
         } catch (Exception e) {
 			e.printStackTrace();

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
-<!-- 2017-03-18T16:13:53 -->
+<!-- 2017-03-19T12:00:36 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="demo2" pageWidth="680" pageHeight="396" columnWidth="640" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="9c175de4-1a12-46c8-ac5f-3a3a1658275f">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="myJson"/>
 	<property name="com.jaspersoft.studio.unit." value="mm"/>
@@ -13,27 +13,45 @@
 	<property name="com.jaspersoft.studio.unit.columnWidth" value="mm"/>
 	<property name="com.jaspersoft.studio.unit.columnSpacing" value="mm"/>
 	<queryString language="json">
-		<![CDATA[item]]>
+		<![CDATA[]]>
 	</queryString>
-	<field name="value" class="java.lang.String">
-		<property name="net.sf.jasperreports.json.field.expression" value="value"/>
-		<fieldDescription><![CDATA[value]]></fieldDescription>
+	<field name="code" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="code"/>
+		<fieldDescription><![CDATA[code]]></fieldDescription>
 	</field>
-	<field name="text" class="java.lang.String">
-		<property name="net.sf.jasperreports.json.field.expression" value="text"/>
-		<fieldDescription><![CDATA[text]]></fieldDescription>
+	<field name="name" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="name"/>
+		<fieldDescription><![CDATA[name]]></fieldDescription>
 	</field>
+	<field name="address" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="address"/>
+		<fieldDescription><![CDATA[address]]></fieldDescription>
+	</field>
+	<field name="creDate" class="java.lang.String">
+		<property name="net.sf.jasperreports.json.field.expression" value="creDate"/>
+		<fieldDescription><![CDATA[creDate]]></fieldDescription>
+	</field>
+	<group name="Group1" isStartNewPage="true" isResetPageNumber="true" isReprintHeaderOnEachPage="true">
+		<groupExpression><![CDATA[$F{code}]]></groupExpression>
+	</group>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
-	<title>
-		<band height="30" splitType="Stretch">
-			<staticText>
-				<reportElement x="230" y="0" width="100" height="30" uuid="fd05befb-cd9f-40f6-b160-1dc5afa75a90"/>
-				<text><![CDATA[测试结果]]></text>
-			</staticText>
+	<pageHeader>
+		<band height="30">
+			<textField>
+				<reportElement x="240" y="0" width="160" height="30" uuid="f8b23cc1-9d25-477a-b5bd-67dc863d6f4b"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA["打印内容将根据编号字段分组，当前编号"+$F{code}]]></textFieldExpression>
+			</textField>
 		</band>
-	</title>
+	</pageHeader>
 	<columnHeader>
 		<band height="30" splitType="Stretch">
 			<staticText>
@@ -45,7 +63,7 @@
 					<rightPen lineWidth="0.1"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<text><![CDATA[文本]]></text>
+				<text><![CDATA[编号	]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="100" y="0" width="100" height="30" uuid="2171ebcd-bf49-482a-a2cc-43aed77ab126"/>
@@ -56,33 +74,77 @@
 					<rightPen lineWidth="0.1"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<text><![CDATA[结果]]></text>
+				<text><![CDATA[姓名]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="200" y="0" width="100" height="30" uuid="89381314-6362-45b3-abe6-2b521d672067"/>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+					<topPen lineWidth="0.1"/>
+					<leftPen lineWidth="0.1"/>
+					<bottomPen lineWidth="0.1"/>
+					<rightPen lineWidth="0.1"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[地址]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="300" y="0" width="100" height="30" uuid="286f90f8-3413-48ea-9b70-f2e07865468b"/>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+					<topPen lineWidth="0.1"/>
+					<leftPen lineWidth="0.1"/>
+					<bottomPen lineWidth="0.1"/>
+					<rightPen lineWidth="0.1"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[日期]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
 		<band height="30">
 			<textField>
-				<reportElement x="100" y="-1" width="100" height="30" uuid="02b70e80-c80b-48d8-931f-1ebd29ceb0ad"/>
-				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+				<reportElement x="0" y="0" width="100" height="30" uuid="d0d4f95c-fb0e-4d85-b707-36f98e78717a"/>
+				<box>
 					<topPen lineWidth="0.1"/>
 					<leftPen lineWidth="0.1"/>
 					<bottomPen lineWidth="0.1"/>
 					<rightPen lineWidth="0.1"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$F{value}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{code}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="0" y="-1" width="100" height="30" uuid="6d0c02e3-0aed-4202-bda2-ffcc9a22c40c"/>
-				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+				<reportElement x="100" y="0" width="100" height="30" uuid="3c60dc4f-6222-4ea7-ada0-f2bc00d84147"/>
+				<box>
 					<topPen lineWidth="0.1"/>
 					<leftPen lineWidth="0.1"/>
 					<bottomPen lineWidth="0.1"/>
 					<rightPen lineWidth="0.1"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$F{text}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="200" y="0" width="100" height="30" uuid="47967ebb-6367-4b04-bb59-abfadd5f8586"/>
+				<box>
+					<topPen lineWidth="0.1"/>
+					<leftPen lineWidth="0.1"/>
+					<bottomPen lineWidth="0.1"/>
+					<rightPen lineWidth="0.1"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{address}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="300" y="0" width="100" height="30" uuid="78206cf2-39fc-4360-bbe0-c04d91f68678"/>
+				<box>
+					<topPen lineWidth="0.1"/>
+					<leftPen lineWidth="0.1"/>
+					<bottomPen lineWidth="0.1"/>
+					<rightPen lineWidth="0.1"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{creDate}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
