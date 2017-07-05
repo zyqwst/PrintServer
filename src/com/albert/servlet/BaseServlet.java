@@ -4,7 +4,6 @@
 package com.albert.servlet;
 
 import java.io.IOException;
-import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.lang.reflect.Method;
 
@@ -14,7 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.albert.domain.ResponseEntity;
-import com.albert.utils.XmlUtil;
 import com.google.gson.Gson;
 
 /**
