@@ -24,11 +24,22 @@ public class ResponseEntity implements Serializable{
 	private String xml;
 	/**打印数据json*/
 	private String json;
+	
+	private String content;
 	public ResponseEntity() {
+	}
+	
+	public ResponseEntity(String content){
+	    this.setContent(content);
 	}
 	public ResponseEntity(String xml,String json){
 		this.xml = xml;
 		this.json = json;
+	}
+	public static ResponseEntity success(String content){
+	    ResponseEntity r = new ResponseEntity(content);
+	    r.setContent(content);
+	    return r;
 	}
 	public static ResponseEntity success(String xml,String json){
 		ResponseEntity r = new ResponseEntity(xml, json);
@@ -66,5 +77,13 @@ public class ResponseEntity implements Serializable{
 	public void setJson(String json) {
 		this.json = json;
 	}
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
 	
 }
