@@ -23,6 +23,8 @@
 	<script type="text/javascript">
 		
 		function print_server(method_name) {
+			var platform = navigator.platform;
+			alert(platform);
 			$.ajax({
 				url : "print?method=" + method_name,
 				dataType : "json",
@@ -41,7 +43,7 @@
 		}
 
 		function local_print(data) {
-			location.href='AlbertPrint:'+'http://127.0.0.1:8080/PrintServer/'+'print?method=printdata&&key='+data.content;
+			location.href='albertprint:'+'http://127.0.0.1/PrintServer/'+'print?method=printdata&&key='+data.content;
 		}
 	</script>
 
