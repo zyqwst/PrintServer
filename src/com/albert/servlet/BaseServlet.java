@@ -4,6 +4,7 @@
 package com.albert.servlet;
 
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 import java.lang.reflect.Method;
 
@@ -65,5 +66,11 @@ public class BaseServlet extends HttpServlet {
 		out.write(json);
 		out.flush();
 		out.close();
+	}
+	public void writeObject(HttpServletResponse resp, ResponseEntity r) throws IOException{
+		ObjectOutputStream oos = new ObjectOutputStream(resp.getOutputStream());
+		oos.writeObject(r);
+		oos.flush();
+		oos.close();
 	}
 }
