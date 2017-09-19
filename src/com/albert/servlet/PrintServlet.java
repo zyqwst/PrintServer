@@ -71,5 +71,4 @@ public class PrintServlet extends BaseServlet{
             write(resp,ResponseEntity.failed(e.getMessage()));
         }
 	}
-	//...其他方法
 }
