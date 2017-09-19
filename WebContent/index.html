@@ -10,7 +10,8 @@
 <body class="container">
 	<div class="jumbotron">
 		<h2>Web打印控件样例</h2>
-		服务端打印DEMO采用简单的Servlet 3.0。本地打印DEMO是基于Blade的轻量级MVC框架，访问端口9000。
+		服务端打印DEMO采用简单的Servlet 3.0。本地打印客户端通过自定义URL Protocol调用本地java程序。
+		亲测ie9,10,11;chrome，火狐等浏览器均支持。
 		<p></p>
 		<a id="printBtn" class="btn btn-primary"  onclick="print_server('zjd')">点击打印</a>
 		<a class="btn btn-danger"  href="ViewerJS/#../bill.xls">预览</a>
@@ -23,6 +24,8 @@
 	<script type="text/javascript">
 		
 		function print_server(method_name) {
+			var platform = navigator.platform;
+			alert(platform);
 			$.ajax({
 				url : "print?method=" + method_name,
 				dataType : "json",
@@ -41,7 +44,7 @@
 		}
 
 		function local_print(data) {
-			location.href='sx-print:'+"http://192.168.1.6/PrintServer/print?method=printdata&&key="+data.content;
+			location.href='albertprint:'+'http://127.0.0.1/PrintServer/'+'print?method=printdata&&key='+data.content;
 		}
 	</script>
 

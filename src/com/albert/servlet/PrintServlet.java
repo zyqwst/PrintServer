@@ -53,7 +53,7 @@ public class PrintServlet extends BaseServlet{
     		String key = UUID.randomUUID().toString();
     		System.out.println(key);
     		Cache.Instance().put(key, ResponseEntity.success(xml, json));
-        	write(resp, ResponseEntity.success(key));
+        	writeObject(resp, ResponseEntity.success(key));
         } catch (Exception e) {
 			e.printStackTrace();
 			write(resp,ResponseEntity.failed(e.getMessage()));
@@ -64,11 +64,10 @@ public class PrintServlet extends BaseServlet{
             Object obj = Cache.Instance().get(req.getParameter("key"));
             if(obj==null) throw new Exception("未找到打印数据");
             ResponseEntity r = (ResponseEntity)obj;
-            System.out.println(r.getContent());
-            write(resp, r);
+            writeObject(resp, r);
         } catch (Exception e) {
             e.printStackTrace();
-            write(resp,ResponseEntity.failed(e.getMessage()));
+            writeObject(resp,ResponseEntity.failed(e.getMessage()));
         }
 	}
 }

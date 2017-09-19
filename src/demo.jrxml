@@ -1,6 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
-<!-- 2017-03-19T12:00:36 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="demo2" pageWidth="680" pageHeight="396" columnWidth="640" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="9c175de4-1a12-46c8-ac5f-3a3a1658275f">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="myJson"/>
 	<property name="com.jaspersoft.studio.unit." value="mm"/>
@@ -12,6 +10,9 @@
 	<property name="com.jaspersoft.studio.unit.rightMargin" value="mm"/>
 	<property name="com.jaspersoft.studio.unit.columnWidth" value="mm"/>
 	<property name="com.jaspersoft.studio.unit.columnSpacing" value="mm"/>
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
 	<queryString language="json">
 		<![CDATA[]]>
 	</queryString>
@@ -53,7 +54,7 @@
 		</band>
 	</pageHeader>
 	<columnHeader>
-		<band height="30" splitType="Stretch">
+		<band height="128" splitType="Stretch">
 			<staticText>
 				<reportElement x="0" y="0" width="100" height="30" uuid="3c1c7bf5-e051-4c71-a03b-f2dcf8fb2f91"/>
 				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
@@ -98,6 +99,31 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<text><![CDATA[日期]]></text>
 			</staticText>
+			<xyLineChart>
+				<chart>
+					<reportElement x="415" y="0" width="200" height="100" printWhenGroupChanges="Group1" uuid="7cfe0b02-612e-431d-b41d-f2fedcd249ad"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<xyDataset>
+					<dataset resetType="Group" resetGroup="Group1"/>
+					<xySeries>
+						<seriesExpression><![CDATA[$F{code}]]></seriesExpression>
+						<xValueExpression><![CDATA[$F{name}]]></xValueExpression>
+						<yValueExpression><![CDATA[$F{creDate}]]></yValueExpression>
+					</xySeries>
+				</xyDataset>
+				<linePlot>
+					<plot/>
+					<categoryAxisFormat>
+						<axisFormat/>
+					</categoryAxisFormat>
+					<valueAxisFormat>
+						<axisFormat/>
+					</valueAxisFormat>
+				</linePlot>
+			</xyLineChart>
 		</band>
 	</columnHeader>
 	<detail>
