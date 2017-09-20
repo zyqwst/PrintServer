@@ -281,7 +281,7 @@ public class XlsxConverter {
 		}*/
 		
 //		System.out.println(style.getFillBackgroundXSSFColor());
-		if( style.getFillBackgroundXSSFColor()!= null){
+		if( style.getFillBackgroundXSSFColor()== null){
 			sb.append("background:#ccc;");
 		}
 		htmlDocumentFacade.addStyleClass(td, "td", sb.toString());
