@@ -7,45 +7,44 @@
 	href="static/bootstrap-3.3.5-dist/css/bootstrap.min.css">
 
 </head>
-<body class="container">
+<body >
+<div class="container">
 	<div class="jumbotron">
-		<h2>Web打印控件样例</h2>
-		服务端打印DEMO采用简单的Servlet 3.0。本地打印客户端通过自定义URL Protocol调用本地java程序。
-		亲测ie9,10,11;chrome，火狐等浏览器均支持。
-		<p></p>
-		<a id="printBtn" class="btn btn-primary"  onclick="print_server('zjd')">点击打印</a>
-		<a class="btn btn-danger"  href="ViewerJS/#../bill.xls">预览</a>
+		<h2>MS Office 生成HTML，网页预览</h2>
+		<p>支持从doc/docx/xls/xlsx转换为html</p>
+		<form enctype="multipart/form-data" method="post" accept-charset="utf-8" action="/convert" id="upload-form">
+			<div class="form-group">
+				<label for="file">上传文档</label>
+    			<input type="file" class="form-control" id="file" name="file" >
+			</div>
+		     <button type="button" class="btn btn-primary" onclick="upload()">上传</button>
+		</form>
 	</div>
-	<iframe src = "ViewerJS/#../bill.xls" width='700' height='500' allowfullscreen webkitallowfullscreen></iframe>
+</div>
+<div id="preview" align="center"></div>
 	<script type="text/javascript" src="static/jquery.min.js"></script>
 	<script type="text/javascript"
 		src="static/bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
-
 	<script type="text/javascript">
+		function upload() {  
+	     var formData = new FormData($( "#upload-form" )[0]);  
+	     $.ajax({  
+	          url: 'poi?method=convert' ,  
+	          type: 'POST',  
+	          data: formData,  
+	          async: false,  
+	          cache: false,  
+	          contentType: false,  
+	          processData: false,  
+	          success: function (returndata) {  
+	            	$("#preview").html(JSON.parse(returndata).content);
+	          },  
+	          error: function (returndata) {  
+	        	  console.log("error:")
+	          }  
+	     });  
+		}  
 		
-		function print_server(method_name) {
-			var platform = navigator.platform;
-			alert(platform);
-			$.ajax({
-				url : "print?method=" + method_name,
-				dataType : "json",
-				success : function(data) {
-					if (data.status == -1) {
-						alert(data.msg);
-						return;
-					}
-					local_print(data);
-				},
-				error : function(data) {
-					console.log(data);
-					alert("服务器数据传输失败,请查看控制台日志");
-				}
-			});
-		}
-
-		function local_print(data) {
-			location.href='albertprint:'+'http://127.0.0.1/PrintServer/'+'print?method=printdata&&key='+data.content;
-		}
 	</script>
 
 </body>
