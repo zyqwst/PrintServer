@@ -93,16 +93,13 @@ public class DocxConverter {
 		
 		Document document = DocumentBuilderFactory.newInstance().newDocumentBuilder().newDocument();
 		StringUtil.getFilePath("");
-		{// create image folder 
 			int pos = output.lastIndexOf(".");
 			 imgFolderPath = output.substring(0, pos).concat(File.separator).concat(IMG_FOLDER);
 			
 			File folder = new File(imgFolderPath);
 			if(!folder.canRead())
 				folder.mkdirs();
-			folder = null;
-		}
-		imgPath = StringUtil.getFileName(filePath, false).concat(File.separator).concat(IMG_FOLDER);
+		imgPath = folder.getParent().replace(folder.getParentFile().getParentFile().getParentFile().getParentFile().getPath(), "").concat(File.separator).concat(IMG_FOLDER);
 		
 		
 		OPCPackage container = OPCPackage.open(filePath);
@@ -327,7 +324,6 @@ public class DocxConverter {
 	}
 	
 	private void processRun(Element container, XWPFRun r) throws IOException {
-		
 		List<XWPFPicture> pics = r.getEmbeddedPictures();
 		if(!pics.isEmpty()){
 			processImage( container, pics);

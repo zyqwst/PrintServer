@@ -806,12 +806,12 @@ public class DocConverter extends CustomerAbsConverter
 				try {
 					
 //					TWIPS_PER_INCH/
-					out = new FileOutputStream(new File(output.concat(File.separator).concat(fileName)));
+					File f= new File(output.concat(File.separator).concat(fileName));
+					out = new FileOutputStream(f);
 					pic.writeImageContent(out); 
 					Element img = htmlDocumentFacade.getDocument().createElement("img");
-					String[] arr = output.split("/");
-					String uri = arr[arr.length-3].concat(File.separator).concat(arr[arr.length-2]).concat(File.separator).concat(arr[arr.length-1]).concat(File.separator).concat(fileName);
-					img.setAttribute("src",uri );
+					String uri = f.getParent().replace(f.getParentFile().getParentFile().getParentFile().getParentFile().getPath(), "").concat(File.separator).concat(fileName);
+					img.setAttribute("src",uri.substring(1) );
 					if(pic.getWidth() > 600)
 						img.setAttribute("style", "width: 600px;");
 					Element imgBlock = htmlDocumentFacade.createBlock();
