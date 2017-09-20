@@ -35,9 +35,9 @@ public class PoiServlet extends BaseServlet {
 	 * 
 	 */
 	private static final long serialVersionUID = 7890806721814771129L;
-
+	private static final String TMP_NAME = "poicache";
 	public void convert() throws Exception {
-
+		System.out.println(req.getCharacterEncoding());
 		String savePath = req.getServletContext().getRealPath("/uploadFile");
 		File dir = new File(savePath);
 		if(!dir.exists()){
@@ -46,15 +46,15 @@ public class PoiServlet extends BaseServlet {
 		Collection<Part> parts = req.getParts();
 		if (parts.size() == 1) {
 			Part part = req.getPart("file");
-			String header = part.getHeader("content-disposition");
+			String header = part.getHeader("Content-Disposition");
 			// 获取文件名
 			String fileName = getFileName(header);
 			// 把文件写到指定路径
 			part.write(savePath + File.separator + fileName);
-			String htmlFile = savePath+File.separator +fileName.replace(".","")+".html";
+			String htmlFile = savePath+File.separator +TMP_NAME+".html";
 			ConvertFacade.convert(savePath + File.separator + fileName,htmlFile);
 			
-			BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(htmlFile),"utf-8")); //这里可以控制编码  
+			BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(htmlFile))); //这里可以控制编码  
             StringBuffer sb = new StringBuffer();  
             String line = null;  
             while((line = br.readLine()) != null) {  
@@ -66,9 +66,6 @@ public class PoiServlet extends BaseServlet {
 	}
 
 	public String getFileName(String header) {
-		String[] tempArr1 = header.split(";");
-		String[] tempArr2 = tempArr1[2].split("=");
-		String fileName = tempArr2[1].substring(tempArr2[1].lastIndexOf("\\") + 1).replaceAll("\"", "");
-		return fileName;
+		return TMP_NAME+header.substring(header.lastIndexOf("."),header.length()-1);
 	}
 }

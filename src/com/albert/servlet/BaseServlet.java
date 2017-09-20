@@ -34,6 +34,9 @@ public class BaseServlet extends HttpServlet {
 	HttpServletResponse resp;
 	@Override
 	public void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException,RuntimeException {
+		req.setCharacterEncoding("utf-8");
+		resp.setCharacterEncoding("UTF-8");
+		resp.setHeader("Content-Type", "text/html; charset=UTF-8");
 		this.req = req;
 		this.resp = resp;
 	    String methodName = req.getParameter("method");
