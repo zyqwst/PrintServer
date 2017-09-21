@@ -45,21 +45,7 @@ public class PPTConverter {
 	
 	private Element ul;
 	
-	/**
-	 * 
-	 * 
-	 * 
-	 * test
-	 * 
-	 * 
-	 * 
-	 * @param args
-	 * @throws IOException
-	 * @throws TransformerException
-	 */
-	public static void main(String[] args) throws IOException, TransformerException {
-		PPTConverter.convert("c:/poi/test.ppt","c:/poi/output/ppt.html");
-	}
+	
 	
 	public static void convert(String filePath, String output) throws IOException, TransformerException{
 		

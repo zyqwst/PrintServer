@@ -62,10 +62,6 @@ public class XlsxConverter {
 		htmlDocumentFacade.getBody().appendChild(window);
 	}
 	
-	public static void main(String[] args) throws InvalidFormatException, IOException, ParserConfigurationException, TransformerException {
-		String name = "test";
-		XlsxConverter.convert("c:/poi/" +name+ ".xlsx", "c:/poi/x/" +name+ ".html");
-	}
 	/**
 	 * 
 	 * @param filePath

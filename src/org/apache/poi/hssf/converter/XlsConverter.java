@@ -42,7 +42,6 @@ import org.apache.poi.hssf.util.HSSFColor;
 import org.apache.poi.hwpf.converter.HtmlDocumentFacade;
 import org.apache.poi.ss.formula.eval.ErrorEval;
 import org.apache.poi.ss.util.CellRangeAddress;
-import org.apache.poi.util.Beta;
 import org.apache.poi.util.POILogFactory;
 import org.apache.poi.util.POILogger;
 import org.w3c.dom.Document;
@@ -52,34 +51,9 @@ import org.w3c.dom.Text;
 public class XlsConverter extends AbstractExcelConverter
 {
 
-    /**
-     * 
-     * 
-     * 
-     * test
-     * 
-     * 
-     * 
-     * 
-     * @param args
-     * @throws Exception
-     */
-    public static void main(String[] args) throws Exception {
-		 
-//		 String filePath = "c:\\poi\\test.xls";
-		 String filePath = "c:\\poi\\xml.xls";
-		 String output = "c:/poi/output/321.html";
-		 XlsConverter.convert(filePath, output);
-		 
-	}
 
     private static final POILogger logger = POILogFactory.getLogger( ExcelToHtmlConverter.class );
     
-    /**
-     * convert excel 
-     * @param filePath .xls file path
-     * @param output save to .html
-     */
     public static void convert( String filePath, String output )
     {	
     	

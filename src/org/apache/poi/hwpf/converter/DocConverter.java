@@ -4,7 +4,6 @@ import static org.apache.poi.hwpf.converter.AbstractWordUtils.TWIPS_PER_INCH;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -42,40 +41,12 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Text;
 
-/**
- * Converts Word files (95-2007) into HTML files.
- * <p>
- * This implementation doesn't create images or links to them. This can be
- * changed by overriding {@link #processImage(Element, boolean, Picture)}
- * method.
- * 
- * @author Sergey Vladimirov (vlsergey {at} gmail {dot} com)
- */
+
 public class DocConverter extends CustomerAbsConverter
 {
-	/**
-	 * 
-	 * 
-	 * 
-	 * 
-	 * test
-	 * 
-	 * 
-	 * 
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		String filePath = "c:\\poi\\test.doc";
-//		String filePath = "c:\\poi\\××××内部文档保密系统20120425 v4.1 [秘密]1.doc";
-		String output = "c:/poi/output/test.html";
-		
-		DocConverter.convert(filePath, output);
-		
-		
-	}
 	
 	
-	/** 文档图片集 */
+	
     PicturesTable picstab = null;
     /** added pageContainer */
     static Element pageContainer = null;

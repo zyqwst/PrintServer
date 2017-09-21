@@ -24,8 +24,6 @@ import javax.xml.transform.stream.StreamResult;
 import org.apache.poi.hwpf.converter.HtmlDocumentFacade;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.openxml4j.opc.OPCPackage;
-import org.apache.poi.util.POILogFactory;
-import org.apache.poi.util.POILogger;
 import org.apache.poi.utils.StringUtil;
 import org.apache.poi.xwpf.usermodel.IBodyElement;
 import org.apache.poi.xwpf.usermodel.ParagraphAlignment;
@@ -47,27 +45,6 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 public class DocxConverter {
-	
-	/**
-	 * 
-	 * 
-	 * 
-	 * test
-	 * 
-	 * 
-	 * 
-	 * @param args
-	 * @throws Exception
-	 */
-	public static void main(String[] args) throws Exception {
-
-		String name = "test";
-//		String name = "test";
-		String filePath = "c:\\poi\\"+name+".docx";
-		String output = "c:\\poi\\x\\"+name+".html";
-		convert(filePath, output);
-	}
-	 private static final POILogger logger = POILogFactory.getLogger( DocxConverter.class );
 	 
 	/**represents the html page*/
 	private HtmlDocumentFacade htmlDocumentFacade;
